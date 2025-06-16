@@ -17,7 +17,7 @@ setupSwagger(app);
 
 app.use(errorHandler)
 
-app.listen(PORT, HOST, () => {
+app.listen(PORT, () => {
     console.log(`server running at http://${HOST}:${PORT}/api`)
     console.log(`Swagger Docs available at http://${HOST}:${PORT}/api-docs`);
 });
