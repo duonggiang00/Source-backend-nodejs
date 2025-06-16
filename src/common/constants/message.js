@@ -77,12 +77,18 @@ const MESSAGES = {
 		CREATE_SUCCESS: "Tạo danh mục con thành công",
 		UPDATE_SUCCESS: "Cập nhật danh mục con thành công",
 		DELETE_SUCCESS: "Xóa danh mục con thành công",
+		SOFT_DELETE_SUCCESS: "Xóa mềm danh mục con thành công",
+		RESTORE_SUCCESS: "Khôi phục danh mục con thành công",
+
 		CREATE_ERROR: "Lỗi khi tạo danh mục con",
 		UPDATE_ERROR: "Lỗi khi cập nhật danh mục con",
 		DELETE_ERROR: "Lỗi khi xóa danh mục con",
+		SOFT_DELETE_FAILED: "Xóa mềm danh mục con thất bại",
+		RESTORE_FAILED: "Khôi phục danh mục con thất bại",
 		CREATE_ERROR_EXISTS: "Danh mục con đã tồn tại",
 		NOT_FOUND: "Không tìm thấy danh mục con",
-		NAME_REQUIRED: "Tên danh mục con là bắt buộc",
+		HAS_PRODUCTS: "Danh mục này có sản phẩm, không thể xóa",
+		CREATE_ERROR_PARENT_ID: "Danh mục cha là bắt buộc",
 	},
 
 	ATTRIBUTE: {

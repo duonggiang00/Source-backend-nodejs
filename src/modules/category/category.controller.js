@@ -1,32 +1,25 @@
 import Category from "./category.model.js"
 import handleAsync from "../../common/utils/handleAsync.js"
 import createError from "../../common/utils/error.js"
-import createResponse from "../../common/utils/respone.js"
-import findByIdCategory from "./category.services.js"
+import createResponse from "../../common/utils/response.js"
 import MESSAGES from "../../common/constants/message.js"
 
 export const createCategory = handleAsync(async (req, res, next) => {
-
-    //validate
-    const validationData = categorySchema.parse(req.body);
-    console.log(validationData)
-
-    const existing = await Category.findOne({ title: req.body.title })
-    if(existing) next(createError(400,MESSAGES.CATEGORY.CREATE_ERROR_EXISTS))
-    const data = await Category.create(req.body)
-    if (data) {
-        return res.json(createResponse(true,201,MESSAGES.CATEGORY.CREATE_SUCCESS, data))
-    }
-    next(createError(400, MESSAGES.CATEGORY.CREATE_ERROR))
-    }
-) 
+    const existing = await Category.findOne({ title: req.body.title });
+    if (existing) next(createError(400, MESSAGES.CATEGORY.CREATE_ERROR_EXISTS));
+    const data = await Category.create(req.body);
+    return res.json(createResponse(true, 201, MESSAGES.CATEGORY.CREATE_SUCCESS, data));
+});
 
 export const getListCategory = handleAsync(async (req, res, next) => {
     const data = await Category.find()
+    if (!data || data.length === 0) {
+        return next(createError(404,MESSAGES.CATEGORY.NOT_FOUND))
+    }
     return res.json(createResponse(true, 200, MESSAGES.CATEGORY.GET_SUCCESS,data))
 })
 export const getDetailCategory = handleAsync(async (req, res, next) => {
-    const data = await findByIdCategory(req.id)
+    const data = await Category.findById(req.params.id)
     if (!data) {
         next(createError(404,MESSAGES.CATEGORY.NOT_FOUND))
     }
@@ -34,17 +27,14 @@ export const getDetailCategory = handleAsync(async (req, res, next) => {
 })
     
 export const updateCategory = handleAsync(async (req, res, next) => {
-    const { id } = req.params
-    if (id) {
-        const data = await Category.findByIdAndUpdate(id, req.body)
-        return res.json(createResponse(true, 200, MESSAGES.CATEGORY.UPDATE_SUCCESS, data))
-     }
+    const data = await Category.findById(req.body.params)
+    if(data) return res.json(createResponse(true, 200, MESSAGES.CATEGORY.UPDATE_SUCCESS, data))
     next(createError(false,404,MESSAGES.CATEGORY.NOT_FOUND))
     }
 )
 
 export const deleteCategory = handleAsync(async (req, res, next) => {
-    const data =   await Category.findByIdAndDelete(id)
+    const data =  await Category.findByIdAndDelete(req.params.id)
     if(data) return res.json(createResponse(true ,2000, MESSAGES.CATEGORY.DELETE_SUCCESS))
     next(createError(false, 404, MESSAGES.CATEGORY.NOT_FOUND))
 })
@@ -52,22 +42,26 @@ export const deleteCategory = handleAsync(async (req, res, next) => {
 export const softDeleteCategory = handleAsync(async (req, res, next) => {
     const { id } = req.params
     if (id) {
-        await Category.findOnedAndUpdate({id, deletedAt: null}, {
-            deletedAt: new Date()
-        })
-        return res.json(createResponse(true,200,MESSAGES.CATEGORY.SOFT_DELETE_SUCCESS))
+        await Category.findOnedAndUpdate(
+            { _id: id },
+            { deletedAt: new Date() },
+            { new: true }
+        );
+        return res.json(createResponse(true, 200, MESSAGES.CATEGORY.SOFT_DELETE_SUCCESS))
     }
     next(createError(false, 404, MESSAGES.CATEGORY.SOFT_DELETE_FAILED))
-})
+});
 
 export const restoreCategory = handleAsync(async (req, res, next) => {
     const { id } = req.params
     if (id) {
-        await Category.findByOneAndUpdate({id, deletedAt: { $ne:null }},{
-            deletedAt:null
-        })
-        return res.json(createResponse(true,200, MESSAGES.CATEGORY.RESTORE_SUCCESS))
+        const data = await Category.findOneAndUpdate(
+            { _id: id },
+            { deletedAt: null },
+            { new: true }
+        );
+        return res.json(createResponse(true, 200, MESSAGES.CATEGORY.RESTORE_SUCCESS), data);
     }
-    next(createError(false, 404, MESSAGES.CATEGORY.RESTORE_FAILED))
-})
+    next(createError(false, 404, MESSAGES.CATEGORY.RESTORE_FAILED));
+});
 
