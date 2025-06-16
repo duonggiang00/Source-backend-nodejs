@@ -1,6 +1,6 @@
 import { Router } from "express";
 import { createSubCategory, deleteSubCategory, getDetailSubCategory, getListSubCategory, softDeleteSubCategory, updateSubCategory } from "./subcategory.controller.js";
-import subCategorySchema from "./subCategory.schema.js";
+import subCategorySchema from "./subcategory.schema.js";
 import validBodyRequest from "../../common/middlewares/validBodyRequest.js";
 
 

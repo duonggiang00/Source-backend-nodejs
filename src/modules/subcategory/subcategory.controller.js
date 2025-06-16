@@ -46,7 +46,7 @@ export const deleteSubCategory = handleAsync(async (req, res, next) => {
 export const softDeleteSubCategory = handleAsync(async (req, res, next) => {
     const { id } = req.params
     if (id) {
-        await SubCategory.findOnedAndUpdate(
+        await SubCategory.findOneAndUpdate(
             { _id: id },
             { deletedAt: new Date() },
             { new: true }

@@ -42,7 +42,7 @@ export const deleteCategory = handleAsync(async (req, res, next) => {
 export const softDeleteCategory = handleAsync(async (req, res, next) => {
     const { id } = req.params
     if (id) {
-        await Category.findOnedAndUpdate(
+        await Category.findOneAndUpdate(
             { _id: id },
             { deletedAt: new Date() },
             { new: true }
