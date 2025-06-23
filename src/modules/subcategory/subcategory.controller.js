@@ -33,13 +33,13 @@ export const getDetailSubCategory = handleAsync(async (req, res, next) => {
     
 export const updateSubCategory = handleAsync(async (req, res, next) => {
     const data = await SubCategory.findByIdAndUpdate(req.params.id, req.body);
-    if (!data) return next(createError(false, 404, MESSAGES.SUBCATEGORY.NOT_FOUND));
+    if (!data) return next(createError( 404, MESSAGES.SUBCATEGORY.NOT_FOUND));
     return res.json(createResponse(true, 200, MESSAGES.SUBCATEGORY.UPDATE_SUCCESS, data));
 });
 
 export const deleteSubCategory = handleAsync(async (req, res, next) => {
     const data =   await SubCategory.findByIdAndDelete(req.params.id)
-    if(data) return res.json(createResponse(true ,2000, MESSAGES.SUBCATEGORY.DELETE_SUCCESS))
+    if(data) return res.json(createResponse(true ,200, MESSAGES.SUBCATEGORY.DELETE_SUCCESS))
     next(createError(false, 404, MESSAGES.SUBCATEGORY.NOT_FOUND))
 })
 

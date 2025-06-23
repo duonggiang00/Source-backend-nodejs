@@ -2,6 +2,7 @@
 import swaggerAutogen from "swagger-autogen";
 import { HOST, PORT } from "./enviroment.js";
 
+const swaggerAutogenInstance = swaggerAutogen({ autoBody: true });
 
 swaggerAutogen();
 
@@ -29,4 +30,4 @@ const swaggerConfig = {
     },
 };
 
-swaggerAutogen()(outputFile, endpointsFiles, swaggerConfig);
+swaggerAutogenInstance(outputFile, endpointsFiles, swaggerConfig);

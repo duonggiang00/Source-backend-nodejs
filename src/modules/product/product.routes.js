@@ -1,13 +1,15 @@
 import { Router } from "express";
-import { createProduct, deleteProduct, getDetailProduct, getListProduct, updateProduct, softDeleteProduct } from "./product.controller.js";
+import validBodyRequest from "../../common/middlewares/validBodyRequest.js";
+import productSchema from "./product.schema.js";
+import { createProduct, deleteProduct, getDetailProduct, getListProduct, softDeleteProduct, updateProduct } from "./product.controller.js";
 
 const productRoutes = Router()
 
-productRoutes.get("/",getListProduct)
-productRoutes.get("/:id",getDetailProduct)//detail
-productRoutes.post("/",createProduct) //them
-productRoutes.patch("/:id",updateProduct) //cap nhat
-productRoutes.delete("/:id",deleteProduct) //delete
-productRoutes.delete("/soft-delete/:id",softDeleteProduct) //delete
+productRoutes.post("/", validBodyRequest(productSchema), createProduct)
+productRoutes.get("/", getListProduct)
+productRoutes.get("/:id", getDetailProduct)
+productRoutes.patch("/:id", updateProduct)
+productRoutes.delete("/:id", deleteProduct)
+productRoutes.delete("/soft-delete/:id", softDeleteProduct)
 
 export default productRoutes
