@@ -1,3 +1,5 @@
+import { BRAND } from "zod";
+
 const MESSAGES = {
 	GENERAL: {
 		SUCCESS: "Thành công",
@@ -11,6 +13,7 @@ const MESSAGES = {
 		LOGIN_SUCCESS: "Đăng nhập thành công",
 		LOGOUT_SUCCESS: "Đăng xuất thành công",
 		REGISTER_SUCCESS: "Đăng ký thành công",
+		REGISTER_FAILED: "Đăng ký thất bại",
 		LOGIN_FAILED: "Đăng nhập thất bại, vui lòng kiểm tra lại thông tin",
 		UNAUTHORIZED: "Bạn cần đăng nhập để thực hiện hành động này",
 		INVALID_TOKEN: "Token không hợp lệ hoặc đã hết hạn",
@@ -44,10 +47,15 @@ const MESSAGES = {
 		CREATE_SUCCESS: "Tạo sản phẩm thành công",
 		UPDATE_SUCCESS: "Cập nhật sản phẩm thành công",
 		DELETE_SUCCESS: "Xóa sản phẩm thành công",
+		SOFT_DELETE_FAILED: "Xóa mềm sản phẩm thất bại",
+		RESTORE_SUCCESS: "Khôi phục sản phẩm thành công",
+		RESTORE_FAILED: "Khôi phục sản phẩm that bai",
+		SOFT_DELETE_SUCCESS: "Xóa mềm sản phẩm thành công",
 		CREATE_ERROR: "Lỗi khi tạo sản phẩm",
 		UPDATE_ERROR: "Lỗi khi cập nhật sản phẩm",
 		DELETE_ERROR: "Lỗi khi xóa sản phẩm",
 		CREATE_ERROR_EXISTS: "Sản phẩm đã tồn tại",
+		CREATE_ERROR_CATEGORY_ID: "Danh mục là bắt buộc",
 		NOT_FOUND: "Không tìm thấy sản phẩm",
 		NAME_REQUIRED: "Tên sản phẩm là bắt buộc",
 		PRICE_REQUIRED: "Giá sản phẩm là bắt buộc",
@@ -69,6 +77,24 @@ const MESSAGES = {
 		NOT_FOUND: "Không tìm thấy danh mục",
 		NAME_REQUIRED: "Tên danh mục là bắt buộc",
 		HAS_SUBCATEGORIES: "Danh mục này có danh mục con, không thể xóa",
+	},
+
+	BRAND: {
+		GET_SUCCESS: "Lấy danh sách thương hiệu thành công",
+		GET_BY_ID_SUCCESS: "Lấy thông tin thương hiệu thành công",
+		CREATE_SUCCESS: "Tạo thương hiệu thành công",
+		UPDATE_SUCCESS: "Cập nhật thương hiệu thành công",
+		DELETE_SUCCESS: "Xóa thương hiệu thành công",
+		SOFT_DELETE_SUCCESS: "Xóa mềm thương hiệu thành công",
+		RESTORE_SUCCESS: "Khôi phục thương hiệu thành công",
+		CREATE_ERROR: "Lỗi khi tạo thương hiệu",
+		UPDATE_ERROR: "Lỗi khi cập nhật thương hiệu",
+		DELETE_ERROR: "Lỗi khi xóa thương hiệu",
+		SOFT_DELETE_FAILED: "Xóa mềm thương hiệu thất bại",
+		RESTORE_FAILED: "Khôi phục thương hiệu thất bại",
+		CREATE_ERROR_EXISTS: "Thương hiệu đã tồn tại",
+		NOT_FOUND: "Không tìm thấy thương hiệu",
+		HAS_PRODUCTS: "Thương hiệu này có sản phẩm, không thể xóa",
 	},
 
 	SUBCATEGORY: {
