@@ -24,7 +24,11 @@ const subCategorySchema = new Schema({
         type: Schema.Types.ObjectId,
         ref: "Category",
         required: true,
-    }
+    },
+    logoUrl: {
+        type: String,
+        default: null
+    },
 },{versionKey: false, timestamps:true})
 
 export default mongoose.model("subCategory", subCategorySchema)

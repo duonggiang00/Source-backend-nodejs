@@ -5,7 +5,8 @@ const subCategorySchema = z.object({
     description: z.string().optional(),
     slug: z.string().min(1, "slug is required"),
     deletedAt: z.date().nullable().optional(),
-    categoryParentId: z.string()
+    categoryParentId: z.string(),
+    logoUrl: z.string().url().optional()
 })
 
 export default subCategorySchema;

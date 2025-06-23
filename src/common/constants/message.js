@@ -61,7 +61,6 @@ const MESSAGES = {
 		PRICE_REQUIRED: "Giá sản phẩm là bắt buộc",
 		INVALID_PRICE: "Giá sản phẩm không hợp lệ",
 	},
-
 	CATEGORY: {
 		GET_SUCCESS: "Lấy danh sách danh mục thành công",
 		GET_BY_ID_SUCCESS: "Lấy thông tin danh mục thành công",
@@ -77,6 +76,21 @@ const MESSAGES = {
 		NOT_FOUND: "Không tìm thấy danh mục",
 		NAME_REQUIRED: "Tên danh mục là bắt buộc",
 		HAS_SUBCATEGORIES: "Danh mục này có danh mục con, không thể xóa",
+	},
+	BANNER: {
+		GET_SUCCESS: "Lấy Banner thành công",
+		CREATE_SUCCESS: "Tạo Banner thành công",
+		SOFT_DELETE_SUCCESS: "Xóa mềm Banner thành công",
+		RESTORE_SUCCESS: "Khôi phục Banner thành công",
+		SOFT_DELETE_FAILED: "Xóa mềm Banner thất bại",
+		RESTORE_FAILED: "Khôi phục Banner thất bại",
+		CREATE_ERROR: "Lỗi khi tạo Banner",
+		CREATE_ERROR_EXISTS: "Danh mục đã tồn tại",
+		UPDATE_SUCCESS: "Cập nhật Banner thành công",
+		DELETE_SUCCESS: "Xóa Banner thành công",
+		NOT_FOUND: "Không tìm thấy Banner",
+		NAME_REQUIRED: "Tên Banner là bắt buộc",
+		HAS_SUBCATEGORIES: "Danh mục này có Banner con, không thể xóa",
 	},
 
 	BRAND: {
